@@ -1,0 +1,57 @@
+{
+  "info": {
+    "name": "Social API Gateway",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Post",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/posts",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"content\": \"My first post!\",\n    \"authorId\": 1,\n    \"authorType\": \"HUMAN\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Add Bot Comment",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/posts/1/comments",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"content\": \"Nice post!\",\n    \"authorId\": 1,\n    \"authorType\": \"BOT\",\n    \"parentCommentId\": null\n}"
+        }
+      }
+    },
+    {
+      "name": "Like Post",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/posts/1/like?userId=2"
+      }
+    },
+    {
+      "name": "Get Post",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/posts/1"
+      }
+    }
+  ]
+}
+ | Out-File -FilePath postman_collection.json -Encoding utf8
